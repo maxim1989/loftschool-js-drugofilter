@@ -1,0 +1,211 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+.Wrapper {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+}
+
+.Title {
+    display: flex;
+    justify-content: center;
+    padding-top: 88px;
+    margin-bottom: 21px;
+}
+
+.ModalMask {
+    position: absolute;
+    background: #999999;
+    opacity: 0.4;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    top: 0;
+    left: 0;    
+}
+
+.DrugoFIlter {
+    width: 620px;
+    height: 490px;
+    background: #f0f0f0;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    z-index: 5;
+    margin: 0 auto;
+}
+
+.DrugoFIlter__Header {
+    height: 45px;
+    background-color: #ff8663;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.DrugoFIlter__Header_title {
+    margin-left: 14px;
+}
+
+.DrugoFIlter__Header_titleText {
+    margin: 0;
+    font-size: 16px;
+    font-family: "Fira Sans";
+    color: rgb(255, 255, 255);
+    line-height: 1.2;
+}
+
+.DrugoFIlter__Header_close {
+    margin-right: 14px;
+}
+
+.DrugoFIlter__Header_close:hover {
+    cursor: pointer;
+}
+
+.DrugoFIlter__Form {
+    height: 45px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+}
+
+.SearchForm::before {
+    content: '';
+    display: block;
+    background-repeat: no-repeat;
+    background-image: url(../image/search.png);
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 15px;
+    left: 20px;
+}
+
+.DrugoFIlter__Form_search,
+.DrugoFIlter__Form_name {
+    width: 270px;
+}
+
+.SearchField,
+.NameField {
+    width: 255px;
+    border-radius: 25px;
+    height: 25px;
+    padding-left: 15px;
+    outline: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff;
+}
+
+.SearchField:focus {
+    border-color: #ff8663;
+}
+
+.NameField:focus {
+    border-color: #ff8663;
+}
+
+.DrugoFIlter__Body {
+    display: flex;
+    justify-content: space-around;
+    height: 355px;
+}
+
+.FriendsList {
+    width: 309px;
+    height: 100%;
+    background-color: #fff;
+}
+
+.FriendsList__title {
+    margin: 15px 0 0 15px;
+    font-size: 12px;
+    font-family: "Fira Sans";
+    color: rgb(79, 79, 79);
+}
+
+.FriendsList__title:after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: rgb(240, 240, 240);
+    position: absolute;
+}
+
+.List {
+    height: 327px;
+    overflow-y: auto;
+}
+
+.Friend {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0;
+    position: relative;
+}
+
+.Friend:after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 95%;
+    background-color: rgb(240, 240, 240);
+    position: absolute;
+    left: 15px;
+    top: 60px;
+}
+
+.Friend__AvaterImage {
+    display: block;
+}
+
+.IconAdd:hover {
+    cursor: pointer;
+}
+
+.DrugoFIlter__Footer {
+    height: 45px;
+}
+
+.DrugoFIlter__Footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 7px;
+    box-sizing: border-box;
+}
+
+.DrugoFIlter__Button {
+    background-color: #ff8663;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.DrugoFIlter__Button:hover {
+    cursor: pointer;
+}
+
+.DrugoFIlter__ButtonText {
+    margin: 0;
+    color: #fff;
+}
+
+.Selected__Friend {
+    background-color: #f0f0f0;
+}
