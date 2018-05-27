@@ -13,10 +13,14 @@ const template = `{{#each friends}}
                             <img data-vkuserid="{{id}}" draggable="false" class="IconAdd__Image" src="{{../action}}" alt="add">
                         </div>
                     </div>
-                  {{/each}}`;
+                  {{/each}}`,
+    addSrc = 'src/image/add.png',
+    closeSrc = 'src/image/close_grey.png';
                   
 let sessionInfo = null,
     friends = null,
+    leftFriends = [],
+    rightFriends = [],
     leftFriendBlock = null,
     rightFriendBlock = null;
 
@@ -65,7 +69,15 @@ function friendsGet() {
         VK.Api.call('friends.get', {fields: 'photo_100', v:"5.73"}, r => {
             if(r.response) {
                 friends = r.response.items;
-                resolve(r.response.items);
+                if (true) {
+                    console.warn('Store Empty');
+                    for (const f of friends) {
+                        leftFriends.push(f);
+                    }
+                } else {
+                    console.warn('Store Not Empty');
+                }
+                resolve();
             } else {
                 reject(new Error('Не удалось получить список друзей.'));
             }
@@ -79,9 +91,9 @@ function friendsGet() {
 async function initPage() {
     try {
         await auth();
-        const friendList = await friendsGet();
+        await friendsGet();
 
-        fillFriendsListLeft(friendList);
+        fillFriendsListLeft(leftFriends);
     
         leftFriendBlock.addEventListener('dragstart', onDragStart);
         leftFriendBlock.addEventListener('click', onAddClick);
@@ -89,6 +101,10 @@ async function initPage() {
         rightFriendBlock.addEventListener('dragover', onDragOver);
         rightFriendBlock.addEventListener('drop', onDrop);
         rightFriendBlock.addEventListener('click', onCloseClick);
+
+        const leftSearch = document.querySelector('.DrugoFIlter__Form .DrugoFIlter__Form_search');
+
+        leftSearch.addEventListener('input', onLeftSearchInput);
     } catch(e) {
         console.error(e);
     }
@@ -97,11 +113,12 @@ async function initPage() {
 
 /**
  * Заполнить начальный список друзей.
- * @param {*} friends 
  */
 function fillFriendsListLeft(friends) {
+    leftFriendBlock.innerHTML = '';
+
     const render = Handlebars.compile(template),
-        html = render({friends: friends, action: 'src/image/add.png'});
+        html = render({friends: friends, action: addSrc});
 
     leftFriendBlock.innerHTML = html;
 
@@ -109,13 +126,31 @@ function fillFriendsListLeft(friends) {
 
 /**
  * Заполнить новый список друзей.
- * @param {*} friends 
  */
 function fillFriendsListRight(friends) {
+    rightFriendBlock.innerHTML = '';
+
     const render = Handlebars.compile(template),
-        html = render({friends: friends, action: 'src/image/close_grey.png'});
+        html = render({friends: friends, action: closeSrc});
 
     rightFriendBlock.innerHTML = html;
+}
+
+/**
+ * Обнавление хранилищ, когда происходит перенос друга из одного списка в другой.
+ * @param {*} from 
+ * @param {*} to 
+ * @param {*} friendId 
+ */
+function updateArrays(from, to, friendId) {
+    friendId = isFinite(friendId) ? Number(friendId) : Number(friendId.split('vkUserId')[1]);
+    return from.filter(f => {
+        if (f.id === friendId) {
+            to.push(f);
+            return false;
+        }
+        return true;
+    });
 }
 
 function onDragStart(event) {
@@ -131,7 +166,9 @@ function onDrop(event) {
         friendHtml = document.getElementById(friendId),
         img = friendHtml.querySelector('.IconAdd__Image');
 
-    img.src = "src/image/close_grey.png";
+    leftFriends = updateArrays(leftFriends, rightFriends, friendId);
+    
+    img.src = closeSrc;
     rightFriendBlock.appendChild(friendHtml);
 }
 
@@ -142,7 +179,9 @@ function onAddClick(event) {
             friendBlock = leftFriendBlock.querySelector(`#vkUserId${friendId}`),
             img = friendBlock.querySelector('.IconAdd__Image');
 
-        img.src = "src/image/close_grey.png";
+        leftFriends = updateArrays(leftFriends, rightFriends, friendId);
+
+        img.src = closeSrc;
         rightFriendBlock.appendChild(friendBlock);
     }
 }
@@ -154,7 +193,19 @@ function onCloseClick(event) {
             friendBlock = rightFriendBlock.querySelector(`#vkUserId${friendId}`),
             img = friendBlock.querySelector('.IconAdd__Image');
 
-        img.src = "src/image/add.png";
+        rightFriends = updateArrays(rightFriends, leftFriends, friendId);
+
+        img.src = addSrc;
         leftFriendBlock.appendChild(friendBlock);
     }
+}
+
+function onLeftSearchInput(event) {
+    const text = event.target.value;
+
+    fillFriendsListLeft(leftFriends.filter(f => {
+        if (f.first_name.toLowerCase().indexOf(text) >= 0 || f.last_name.toLowerCase().indexOf(text) >= 0) {
+            return true;
+        }
+    }));
 }
