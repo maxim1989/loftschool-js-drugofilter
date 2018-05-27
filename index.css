@@ -84,7 +84,7 @@ body {
     content: '';
     display: block;
     background-repeat: no-repeat;
-    background-image: url(../image/search.png);
+    background-image: url(src/image/search.png);
     position: absolute;
     width: 15px;
     height: 15px;
@@ -166,11 +166,17 @@ body {
     background-color: rgb(240, 240, 240);
     position: absolute;
     left: 15px;
-    top: 60px;
+    top: 120px;
+}
+
+.Friend__Avatar {
+    overflow: hidden;
+    border-radius: 50px;
 }
 
 .Friend__AvaterImage {
     display: block;
+    width: 100px;
 }
 
 .IconAdd:hover {

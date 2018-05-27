@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Drugofilter</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://vk.com/js/api/openapi.js?154" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
+</head>
+<body>
+    <div class="Wrapper">
+        <div class="Title">
+            <img class="Title__Image" src="src/image/title.png" alt="title">
+        </div>
+        <div class="DrugoFIlter">
+            <div class="DrugoFIlter__Header">
+                <div class="DrugoFIlter__Header_title">
+                    <p class="DrugoFIlter__Header_titleText">
+                        Выберете друзей
+                    </p>
+                </div>
+                <div class="DrugoFIlter__Header_close">
+                    <img class="DrugoFIlter__Header_closeImage" src="src/image/close.png" alt="close">
+                </div>
+            </div>
+            <div class="DrugoFIlter__Form">
+                <div class="DrugoFIlter__Form_search">
+                    <form class="SearchForm">
+                        <input class="SearchField" type="text" placeholder="Начните вводить имя друга">
+                    </form>
+                </div>
+                <div class="DrugoFIlter__Form_name">
+                    <form class="NameForm">
+                        <input class="NameField" type="text" placeholder="Название">
+                    </form>
+                </div>
+            </div>
+            <div class="DrugoFIlter__Body">
+                <div class="FriendsList FriendsList_Left">
+                    <p class="FriendsList__title">Ваши друзья</p>
+                    <div class="List">
+                    
+                    </div>
+                </div>
+                <div class="FriendsList FriendsList_Right">
+                    <p class="FriendsList__title">Друзья в списке</p>
+                    <div class="List">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="DrugoFIlter__Footer">
+                <div class="DrugoFIlter__Button">
+                    <p class="DrugoFIlter__ButtonText">Сохранить</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ModalMask"></div>
+    <script src="src/index.js"></script>
+</body>
+</html>
