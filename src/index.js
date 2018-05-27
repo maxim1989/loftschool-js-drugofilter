@@ -68,21 +68,29 @@ function friendsGet() {
     return new Promise((resolve, reject) => {
         VK.Api.call('friends.get', {fields: 'photo_100', v:"5.73"}, r => {
             if(r.response) {
-                friends = r.response.items;
-                if (true) {
-                    console.warn('Store Empty');
-                    for (const f of friends) {
-                        leftFriends.push(f);
-                    }
-                } else {
-                    console.warn('Store Not Empty');
-                }
-                resolve();
+                resolve(r.response.items);
             } else {
                 reject(new Error('Не удалось получить список друзей.'));
             }
         });
     });
+}
+
+function fillStores(friends) {
+    const leftSessionStore = sessionStorage.getItem('leftFriends'),
+        rightSessionStore = sessionStorage.getItem('rightFriends'),
+        isEmpty = !leftSessionStore && !rightSessionStore;
+
+    if (isEmpty) {
+        console.warn('Store Empty');
+        for (const f of friends) {
+            leftFriends.push(f);
+        }
+    } else {
+        console.warn('Store Not Empty');
+        leftFriends = JSON.parse(leftSessionStore);
+        rightFriends = JSON.parse(rightSessionStore);
+    }
 }
 
 /**
@@ -91,9 +99,11 @@ function friendsGet() {
 async function initPage() {
     try {
         await auth();
-        await friendsGet();
+        const friends = await friendsGet();
+        fillStores(friends);
 
         fillFriendsListLeft(leftFriends);
+        fillFriendsListRight(rightFriends);
     
         leftFriendBlock.addEventListener('dragstart', onDragStart);
         leftFriendBlock.addEventListener('click', onAddClick);
@@ -109,6 +119,10 @@ async function initPage() {
         const rightSearch = document.querySelector('.DrugoFIlter__Form .DrugoFIlter__Form_name');
 
         rightSearch.addEventListener('input', onRightSearchInput);
+
+        const buttonSave = document.querySelector('.DrugoFIlter__Button');
+
+        buttonSave.addEventListener('click', onButtonSaveClick);
     } catch(e) {
         console.error(e);
     }
@@ -205,7 +219,7 @@ function onCloseClick(event) {
 }
 
 function onLeftSearchInput(event) {
-    const text = event.target.value;
+    const text = event.target.value.toLowerCase();
 
     fillFriendsListLeft(leftFriends.filter(f => {
         if (f.first_name.toLowerCase().indexOf(text) >= 0 || f.last_name.toLowerCase().indexOf(text) >= 0) {
@@ -215,11 +229,19 @@ function onLeftSearchInput(event) {
 }
 
 function onRightSearchInput(event) {
-    const text = event.target.value;
+    const text = event.target.value.toLowerCase();
 
     fillFriendsListRight(rightFriends.filter(f => {
         if (f.first_name.toLowerCase().indexOf(text) >= 0 || f.last_name.toLowerCase().indexOf(text) >= 0) {
             return true;
         }
     }));
+}
+
+function onButtonSaveClick(event) {
+    event.preventDefault();
+
+    sessionStorage.setItem('leftFriends', JSON.stringify(leftFriends));
+    sessionStorage.setItem('rightFriends', JSON.stringify(rightFriends));
+    alert('Сохранено.');
 }
