@@ -105,6 +105,10 @@ async function initPage() {
         const leftSearch = document.querySelector('.DrugoFIlter__Form .DrugoFIlter__Form_search');
 
         leftSearch.addEventListener('input', onLeftSearchInput);
+
+        const rightSearch = document.querySelector('.DrugoFIlter__Form .DrugoFIlter__Form_name');
+
+        rightSearch.addEventListener('input', onRightSearchInput);
     } catch(e) {
         console.error(e);
     }
@@ -204,6 +208,16 @@ function onLeftSearchInput(event) {
     const text = event.target.value;
 
     fillFriendsListLeft(leftFriends.filter(f => {
+        if (f.first_name.toLowerCase().indexOf(text) >= 0 || f.last_name.toLowerCase().indexOf(text) >= 0) {
+            return true;
+        }
+    }));
+}
+
+function onRightSearchInput(event) {
+    const text = event.target.value;
+
+    fillFriendsListRight(rightFriends.filter(f => {
         if (f.first_name.toLowerCase().indexOf(text) >= 0 || f.last_name.toLowerCase().indexOf(text) >= 0) {
             return true;
         }
