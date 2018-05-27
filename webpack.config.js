@@ -34,12 +34,11 @@ module.exports = {
                 warnings: false
             }
         }),
-        new ExtractTextPlugin('index.css'),
+        new ExtractTextPlugin('styles.css'),
         new HtmlPlugin({
-            title: 'DrugoFilter',
+            title: 'drugofilter',
             template: 'index.hbs',
-            filename: 'index.html',
-            chunks: ['dnd']
+            chunks: ['index']
         }),
         new CleanWebpackPlugin(['dist'])
     ]

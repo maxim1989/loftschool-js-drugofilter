@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Drugofilter</title>
     <link rel="stylesheet" href="index.css">
+    <script src="https://vk.com/js/api/openapi.js?154" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.js"></script>
 </head>
 <body>
     <div class="Wrapper">
@@ -36,157 +38,16 @@
                 </div>
             </div>
             <div class="DrugoFIlter__Body">
-                <div class="FriendsList">
+                <div class="FriendsList FriendsList_Left">
                     <p class="FriendsList__title">Ваши друзья</p>
                     <div class="List">
-                    <!-- ------------------------------------------------------ -->
-                        <div class="Friend">
-                            <div class="Friend__Avatar">
-                                <img src="src/image/test_avatar.png" alt="avatar" class="Friend__AvaterImage">
-                            </div>
-                            <div class="Friend__Name">
-                                <p class="Friend__NameText">Artem Baratanov</p>
-                            </div>
-                            <div class="IconAdd">
-                                <img class="IconAdd__Image" src="src/image/add.png" alt="add">
-                            </div>
-                        </div>
-                        <div class="Friend">
-                            <div class="Friend__Avatar">
-                                <img src="src/image/test_avatar.png" alt="avatar" class="Friend__AvaterImage">
-                            </div>
-                            <div class="Friend__Name">
-                                <p class="Friend__NameText">Artem Baratanov</p>
-                            </div>
-                            <div class="IconAdd">
-                                <img class="IconAdd__Image" src="src/image/add.png" alt="add">
-                            </div>
-                        </div>
-                        <div class="Friend">
-                            <div class="Friend__Avatar">
-                                <img src="src/image/test_avatar.png" alt="avatar" class="Friend__AvaterImage">
-                            </div>
-                            <div class="Friend__Name">
-                                <p class="Friend__NameText">Artem Baratanov</p>
-                            </div>
-                            <div class="IconAdd">
-                                <img class="IconAdd__Image" src="src/image/add.png" alt="add">
-                            </div>
-                        </div>
-                        <div class="Friend">
-                            <div class="Friend__Avatar">
-                                <img src="src/image/test_avatar.png" alt="avatar" class="Friend__AvaterImage">
-                            </div>
-                            <div class="Friend__Name">
-                                <p class="Friend__NameText">Artem Baratanov</p>
-                            </div>
-                            <div class="IconAdd">
-                                <img class="IconAdd__Image" src="src/image/add.png" alt="add">
-                            </div>
-                        </div>
-                        <div class="Friend">
-                            <div class="Friend__Avatar">
-                                <img src="src/image/test_avatar.png" alt="avatar" class="Friend__AvaterImage">
-                            </div>
-                            <div class="Friend__Name">
-                                <p class="Friend__NameText">Artem Baratanov</p>
-                            </div>
-                            <div class="IconAdd">
-                                <img class="IconAdd__Image" src="src/image/add.png" alt="add">
-                            </div>
-                        </div>
-                        <div class="Friend">
-                            <div class="Friend__Avatar">
-                                <img src="src/image/test_avatar.png" alt="avatar" class="Friend__AvaterImage">
-                            </div>
-                            <div class="Friend__Name">
-                                <p class="Friend__NameText">Artem Baratanov</p>
-                            </div>
-                            <div class="IconAdd">
-                                <img class="IconAdd__Image" src="image/add.png" alt="add">
-                            </div>
-                        </div>
-                        <div class="Friend">
-                            <div class="Friend__Avatar">
-                                <img src="src/image/test_avatar.png" alt="avatar" class="Friend__AvaterImage">
-                            </div>
-                            <div class="Friend__Name">
-                                <p class="Friend__NameText">Artem Baratanov</p>
-                            </div>
-                            <div class="IconAdd">
-                                <img class="IconAdd__Image" src="src/image/add.png" alt="add">
-                            </div>
-                        </div>
-                        <div class="Friend">
-                            <div class="Friend__Avatar">
-                                <img src="src/image/test_avatar.png" alt="avatar" class="Friend__AvaterImage">
-                            </div>
-                            <div class="Friend__Name">
-                                <p class="Friend__NameText">Artem Baratanov</p>
-                            </div>
-                            <div class="IconAdd">
-                                <img class="IconAdd__Image" src="src/image/add.png" alt="add">
-                            </div>
-                        </div>
-                        <div class="Friend">
-                            <div class="Friend__Avatar">
-                                <img src="src/image/test_avatar.png" alt="avatar" class="Friend__AvaterImage">
-                            </div>
-                            <div class="Friend__Name">
-                                <p class="Friend__NameText">Artem Baratanov</p>
-                            </div>
-                            <div class="IconAdd">
-                                <img class="IconAdd__Image" src="src/image/add.png" alt="add">
-                            </div>
-                        </div>
-                        <div class="Friend">
-                            <div class="Friend__Avatar">
-                                <img src="src/image/test_avatar.png" alt="avatar" class="Friend__AvaterImage">
-                            </div>
-                            <div class="Friend__Name">
-                                <p class="Friend__NameText">Artem Baratanov</p>
-                            </div>
-                            <div class="IconAdd">
-                                <img class="IconAdd__Image" src="src/image/add.png" alt="add">
-                            </div>
-                        </div>
-                        <div class="Friend">
-                            <div class="Friend__Avatar">
-                                <img src="src/image/test_avatar.png" alt="avatar" class="Friend__AvaterImage">
-                            </div>
-                            <div class="Friend__Name">
-                                <p class="Friend__NameText">Artem Baratanov</p>
-                            </div>
-                            <div class="IconAdd">
-                                <img class="IconAdd__Image" src="src/image/add.png" alt="add">
-                            </div>
-                        </div>
-                    <!-- ------------------------------------------------------ -->
+                    
                     </div>
                 </div>
-                <div class="FriendsList">
+                <div class="FriendsList FriendsList_Right">
                     <p class="FriendsList__title">Друзья в списке</p>
-                    <div class="Friend">
-                        <div class="Friend__Avatar">
-                            <img src="src/image/test_avatar.png" alt="avatar" class="Friend__AvaterImage">
-                        </div>
-                        <div class="Friend__Name">
-                            <p class="Friend__NameText">Artem Baratanov</p>
-                        </div>
-                        <div class="IconAdd">
-                            <img class="IconAdd__Image" src="src/image/close_grey.png" alt="add">
-                        </div>
-                    </div>
-                    <div class="Friend">
-                        <div class="Friend__Avatar">
-                            <img src="src/image/test_avatar.png" alt="avatar" class="Friend__AvaterImage">
-                        </div>
-                        <div class="Friend__Name">
-                            <p class="Friend__NameText">Artem Baratanov</p>
-                        </div>
-                        <div class="IconAdd">
-                            <img class="IconAdd__Image" src="src/image/close_grey.png" alt="add">
-                        </div>
+                    <div class="List">
+                        
                     </div>
                 </div>
             </div>
@@ -198,14 +59,6 @@
         </div>
     </div>
     <div class="ModalMask"></div>
-    <script type="text/javascript">
-        var friends = document.querySelectorAll('.Friend');
-        for (var i = 0; i < friends.length; i++) {
-            friends[i].addEventListener('click', function(event) {
-                event.preventDefault();
-                this.classList.toggle('Selected__Friend');
-            })
-        }
-      </script>
+    <script src="src/index.js"></script>
 </body>
 </html>
