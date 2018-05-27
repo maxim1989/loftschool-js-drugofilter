@@ -88,6 +88,7 @@ async function initPage() {
     
         rightFriendBlock.addEventListener('dragover', onDragOver);
         rightFriendBlock.addEventListener('drop', onDrop);
+        rightFriendBlock.addEventListener('click', onCloseClick);
     } catch(e) {
         console.error(e);
     }
@@ -138,8 +139,22 @@ function onAddClick(event) {
     event.preventDefault();
     if (event.target.className === 'IconAdd__Image') {
         const friendId = event.target.dataset.vkuserid,
-            friendBlock = leftFriendBlock.querySelector(`#vkUserId${friendId}`);
+            friendBlock = leftFriendBlock.querySelector(`#vkUserId${friendId}`),
+            img = friendBlock.querySelector('.IconAdd__Image');
 
+        img.src = "src/image/close_grey.png";
         rightFriendBlock.appendChild(friendBlock);
+    }
+}
+
+function onCloseClick(event) {
+    event.preventDefault();
+    if (event.target.className === 'IconAdd__Image') {
+        const friendId = event.target.dataset.vkuserid,
+            friendBlock = rightFriendBlock.querySelector(`#vkUserId${friendId}`),
+            img = friendBlock.querySelector('.IconAdd__Image');
+
+        img.src = "src/image/add.png";
+        leftFriendBlock.appendChild(friendBlock);
     }
 }
